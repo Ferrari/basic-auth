@@ -1,18 +1,20 @@
 {
-  "name": "basic-auth",
-  "description": "node.js basic auth parser",
-  "version": "1.0.4",
+  "name": "jwt-parser",
+  "description": "jwt header parser",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
-    "basic",
-    "auth",
     "authorization",
-    "basicauth"
+    "jwt"
   ],
-  "repository": "jshttp/basic-auth",
+  "repository": "Ferrari/jwt-parser",
+  "dependencies": {
+    "jsonwebtoken": "^7.1.9",
+    "jwt-simple": "0.5.0"
+  },
   "devDependencies": {
-    "istanbul": "0.4.3",
-    "mocha": "1.21.5"
+    "istanbul": "0.4.5",
+    "mocha": "3.0.2"
   },
   "files": [
     "HISTORY.md",
@@ -20,7 +22,7 @@
     "index.js"
   ],
   "engines": {
-    "node": ">= 0.6"
+    "node": ">= 0.10"
   },
   "scripts": {
     "test": "mocha --check-leaks --reporter spec --bail",
