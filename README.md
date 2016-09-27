@@ -4,75 +4,43 @@
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Node.js Version][node-version-image]][node-version-url]
 [![Build Status][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
 
-Generic basic auth Authorization header field parser for whatever.
+Generic JWT Authorization header field parser for whatever.
 
 ## Installation
 
 ```
-$ npm install basic-auth
+$ npm install jwt-parser
 ```
 
 ## API
 
 ```js
-var auth = require('basic-auth')
+var auth = require('jwt-parser')
 ```
 
-### auth(req)
+### auth(req, secret)
 
-Get the basic auth credentials from the given request. The `Authorization`
+Get the JWT payload from the given request. JWT `secret` also required so 
+it can decode and get payload correctly. The `Authorization`
 header is parsed and if the header is invalid, `undefined` is returned,
-otherwise an object with `name` and `pass` properties.
+otherwise will return decode jwt payload.
 
 ## Example
 
-Pass a node request or koa Context object to the module exported. If
-parsing fails `undefined` is returned, otherwise an object with
-`.name` and `.pass`.
-
 ```js
-var auth = require('basic-auth');
-var user = auth(req);
-// => { name: 'something', pass: 'whatever' }
-
+var auth = require('jwt-parser');
+var user = auth(req, secret);
 ```
-
-### With vanilla node.js http server
-
-```js
-var http = require('http')
-var auth = require('basic-auth')
-
-// Create server
-var server = http.createServer(function (req, res) {
-  var credentials = auth(req)
-
-  if (!credentials || credentials.name !== 'john' || credentials.pass !== 'secret') {
-    res.statusCode = 401
-    res.setHeader('WWW-Authenticate', 'Basic realm="example"')
-    res.end('Access denied')
-  } else {
-    res.end('Access granted')
-  }
-})
-
-// Listen
-server.listen(3000)
-```
-
 # License
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/basic-auth.svg
-[npm-url]: https://npmjs.org/package/basic-auth
-[node-version-image]: https://img.shields.io/node/v/basic-auth.svg
+[npm-image]: https://img.shields.io/npm/v/jwt-parser.svg
+[npm-url]: https://npmjs.org/package/jwt-parser
+[node-version-image]: https://img.shields.io/node/v/jwt-parser.svg
 [node-version-url]: https://nodejs.org/en/download
-[travis-image]: https://img.shields.io/travis/jshttp/basic-auth/master.svg
-[travis-url]: https://travis-ci.org/jshttp/basic-auth
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/basic-auth/master.svg
-[coveralls-url]: https://coveralls.io/r/jshttp/basic-auth?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/basic-auth.svg
-[downloads-url]: https://npmjs.org/package/basic-auth
+[travis-image]: https://img.shields.io/travis/Ferrari/jwt-parser/master.svg
+[travis-url]: https://travis-ci.org/Ferrari/jwt-parser
+[downloads-image]: https://img.shields.io/npm/dm/jwt-parser.svg
+[downloads-url]: https://npmjs.org/package/jwt-parser
