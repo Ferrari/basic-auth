@@ -9,7 +9,7 @@
   ],
   "repository": "Ferrari/jwt-parser",
   "dependencies": {
-    "jsonwebtoken": "^7.1.9"
+    "jsonwebtoken": "^7.2.0"
   },
   "devDependencies": {
     "istanbul": "0.4.5",
