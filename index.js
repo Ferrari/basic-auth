@@ -44,9 +44,13 @@ function auth(req, secret, opts) {
   }
 
   // return jwt encode payload
-  return (opts)
-    ? jwt.verify(match[1], secret, opts)
-    : jwt.verify(match[1], secret)
+  try {
+    return (opts)
+      ? jwt.verify(match[1], secret, opts)
+      : jwt.verify(match[1], secret)
+  } catch (err) {
+    throw err
+  }
 }
 
 /**

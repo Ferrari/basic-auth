@@ -11,6 +11,14 @@ function request(payload) {
   }
 }
 
+function expiredRequest(payload) {
+  return {
+    headers: {
+      authorization: (payload) ? 'JWT ' + jwt.sign(payload, secret, { expiresIn: '1s' }) : ''
+    }
+  }
+}
+
 describe('auth(req)', function () {
   describe('arguments', function () {
     describe('req', function () {
@@ -47,6 +55,15 @@ describe('auth(req)', function () {
       var payload = auth(req, secret);
       assert.equal(payload.name, 'foo');
       assert.equal(payload.pass, 'bar');
+    })
+  })
+
+  describe('with invalid token', function() {
+    it('expired JWT token', function () {
+      var req = expiredRequest({ name: 'testExpiredToken' })
+      setTimeout(function() {
+        assert.throws(auth(req, secret))
+      }, 2000)
     })
   })
 })

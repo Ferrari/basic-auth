@@ -9,7 +9,7 @@
   ],
   "repository": "Ferrari/jwt-parser",
   "dependencies": {
-    "jsonwebtoken": "^7.1.9"
+    "jsonwebtoken": "^8.0.0"
   },
   "devDependencies": {
     "istanbul": "0.4.5",
@@ -21,7 +21,7 @@
     "index.js"
   ],
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 4.8"
   },
   "scripts": {
     "test": "mocha --check-leaks --reporter spec --bail",
